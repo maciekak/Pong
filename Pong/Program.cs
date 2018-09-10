@@ -1,5 +1,6 @@
 ﻿using Pong.Items;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 
 namespace Pong
@@ -8,12 +9,12 @@ namespace Pong
     {
         static void Main()
         {
-            var window = new RenderWindow(new VideoMode(200, 200), "Pong");
+            var window = new RenderWindow(new VideoMode(Configuration.WindowWidth, Configuration.WindowHeight), "Pong");
             var cs = new CircleShape(100.0f)
             {
                 FillColor = Color.Green
             };
-            var ball = new Ball();
+            var ball = new Ball(new Vector2i(5, 5));
 
             window.SetActive();
             while (window.IsOpen)
