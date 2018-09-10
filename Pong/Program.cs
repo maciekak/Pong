@@ -10,10 +10,6 @@ namespace Pong
         static void Main()
         {
             var window = new RenderWindow(new VideoMode(Configuration.WindowWidth, Configuration.WindowHeight), "Pong");
-            var cs = new CircleShape(100.0f)
-            {
-                FillColor = Color.Green
-            };
             var ball = new Ball(new Vector2i(5, 5));
 
             window.SetActive();

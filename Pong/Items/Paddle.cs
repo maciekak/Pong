@@ -3,10 +3,13 @@ using SFML.System;
 
 namespace Pong.Items
 {
-    public class Paddle : Drawable
+    public class Paddle : Drawable, ICanUpdate
     {
-        private const int Height = Configuration.WindowHeight / Configuration.RelPaddleHeight;
-        private const int Width = Configuration.WindowWidth / Configuration.RelPaddleWidth;
+        public const int Height = Configuration.WindowHeight / Configuration.RelPaddleHeight;
+        public const int Width = Configuration.WindowWidth / Configuration.RelPaddleWidth;
+
+        public Vector2i Position;
+        public int Speed;
         
         public void Draw(RenderTarget target, RenderStates states)
         {
@@ -15,6 +18,11 @@ namespace Pong.Items
                 FillColor = new Color(Color.White)
             };
             target.Draw(rect, states);
+        }
+
+        public void Update()
+        {
+            Position = new Vector2i(Position.X, Position.Y + Speed);
         }
     }
 }
