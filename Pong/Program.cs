@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SFML.Graphics;
+using SFML.Window;
 
 namespace Pong
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            RenderWindow window = new RenderWindow(new VideoMode(200, 200), "test");
+            CircleShape cs = new CircleShape(100.0f);
+            cs.FillColor = Color.Green;
+            window.SetActive();
+            while (window.IsOpen)
+            {
+                window.Closed += (sender, args) =>
+                {
+                    window.Close();
+                };
+                window.Clear();
+                window.DispatchEvents();
+                window.Draw(cs);
+                window.Display();
+            }
         }
     }
 }
