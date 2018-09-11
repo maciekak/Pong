@@ -11,8 +11,9 @@ namespace Pong.Items
         private Vector2i _speed;
         public Vector2i Position;
 
-        public Ball(Vector2i speed)
+        public Ball(Vector2i position, Vector2i speed)
         {
+            Position = position;
             _speed = speed;
         }
 
@@ -22,6 +23,7 @@ namespace Pong.Items
             {
                 FillColor = new Color(Color.White)
             };
+            rect.Position = new Vector2f(Position.X, Position.Y);
             target.Draw(rect, states);
         }
         
@@ -78,10 +80,10 @@ namespace Pong.Items
 
         private bool CheckIfOnCorrectHeight(Paddle paddle)
         {
-            return (paddle.Position.Y > Position.Y + BallSize
-                    || paddle.Position.Y > Position.Y + BallSize + _speed.Y)
-                   && (paddle.Position.Y + Paddle.Height < Position.Y
-                       || paddle.Position.Y + Paddle.Height < Position.Y + _speed.Y);
+            return (paddle.Position.Y < Position.Y + BallSize
+                    || paddle.Position.Y < Position.Y + BallSize + _speed.Y)
+                   && (paddle.Position.Y + Paddle.Height > Position.Y
+                       || paddle.Position.Y + Paddle.Height > Position.Y + _speed.Y);
         }
 
         private void CheckWallsCollision()
